@@ -1,0 +1,165 @@
+<p-panel header="Chamado #{{ chamadoDetalhe.idChamado }}">
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="solicitante">Solcitante:</label><br />
+        <input
+          id="solicitante"
+          class="form-control"
+          type="text"
+          value="{{ chamadoDetalhe.solicitante }}"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="responsavel">Responsável:</label><br />
+        <input
+          id="responsavel"
+          class="form-control"
+          type="text"
+          value="{{ chamadoDetalhe.responsavel }}"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="">
+      <label for="assuntos">Assuntos: </label>
+      <ng-container
+        *ngFor="let assunto of chamadoDetalhe.assuntos"
+        id="assuntos"
+      >
+        <p-tag
+          [value]="assunto.tag"
+          severity="success"
+          [style]="{ margin: '2px' }"
+        ></p-tag>
+      </ng-container>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Editar Assuntos"
+        class="p-button-text"
+        (click)="showAssuntosModalDialog()"
+        [style]="{ height: '25px' }"
+      >
+        <i class="pi pi-external-link"> </i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <label for="descricao">Descrição:</label>
+    <p-editor
+      id="descricao"
+      [(ngModel)]="chamadoDetalhe.descricao"
+      [readonly]="true"
+    >
+      <p-header></p-header>
+    </p-editor>
+  </div>
+
+  <div class="row">
+    <label for="causaraiz">Causa Raiz:</label><br />
+    <p-editor
+      id="causaraiz"
+      [(ngModel)]="chamadoDetalhe.causaRaiz"
+      [readonly]="true"
+    >
+      <p-header></p-header>
+    </p-editor>
+  </div>
+  <div class="row">
+    <label for="solucao">Solucao Proposta:</label><br />
+    <p-editor
+      id="solucao"
+      [(ngModel)]="chamadoDetalhe.solucaoProposta"
+      [readonly]="true"
+    >
+      <p-header></p-header>
+    </p-editor>
+  </div>
+  <br />
+  <button pButton label="Voltar" (click)="voltarPagina()">
+    <i class="pi pi-angle-left"></i>
+  </button>
+</p-panel>
+<br />
+<p-panel header="Chamados Semelhantes">
+  <div class="row">
+    <div class="col">
+      <p-table [value]="chamadosSemelhantes" [paginator]="true" [rows]="10" [loading]="resultsLoading">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Identificação</th>
+            <th>Solicitante</th>
+            <th>Assunto</th>
+            <th>Status</th>
+            <th>Detalhe</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-chamado>
+          <tr>
+            <td>{{ chamado.idChamado }}</td>
+            <td>{{ chamado.solicitante }}</td>
+            <td>
+              <ng-container *ngFor="let assunto of chamado.assuntos">
+                <p-tag
+                  [value]="assunto"
+                  severity="success"
+                  [style]="{ 'margin-right': '2px' }"
+                ></p-tag>
+              </ng-container>
+            </td>
+            <td>
+              {{ chamado.status }}
+            </td>
+            <td>
+              <button
+                pButton
+                type="button"
+                title="Detalhar chamado"
+                icon="pi pi-window-maximize"
+                [routerLink]="['/chamados', chamado.idChamado]"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</p-panel>
+<p-dialog
+  header="Edição de Assuntos Selecionados"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <div class="form-group" style="min-height: 10vw">
+    <label for="assuntos">Assuntos:</label><br />
+    <app-assunto-auto-complete
+      [multiple]="true"
+      [form]="form"
+      controlName="assuntos"
+    ></app-assunto-auto-complete>
+  </div>
+  <p-messages [(value)]="msgs"></p-messages>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="salvarAssuntos()"
+      label="Salvar"
+      class="p-button-text"
+      [loading]="saveButtonLoading"
+    ></p-button>
+    <p-button
+      icon="pi pi-times"
+      (click)="displayModal = false"
+      label="Cancelar"
+    ></p-button>
+  </ng-template>
+</p-dialog>

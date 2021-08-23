@@ -1,0 +1,11 @@
+<p-autoComplete
+  inputId="assuntos"
+  [suggestions]="assuntosResultado"
+  [multiple]="multiple"
+  (completeMethod)="buscaAssunto($event)"
+  [formControl]="control"
+  [forceSelection]="true"
+  [unique]="true"
+  field="tag"
+>
+</p-autoComplete>

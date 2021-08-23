@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+
+    <p-panel header="Login">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="my-form">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="nomeUsuario">Usuário:</label><br>
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                <input formControlName="userName" id="nomeUsuario" type="text" pInputText [style]="{'width':'100%'}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="senha">Senha:</label><br>
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                                    <input formControlName="userPassword" id="senha" type="password" pInputText [style]="{'width':'100%'}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-end btn-group">
+                        <button pButton type="reset" label="Limpar" class="p-button-secondary"></button>
+                        <button pButton type="submit" label="Login"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-panel>
+</div>

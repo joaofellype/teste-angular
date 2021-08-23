@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-6">
+        <p-panel header="Chamados por Solicitante">
+            <p-chart type="pie" [data]="dadosGrafico1" [style]="{'width': '40%'}"></p-chart>
+
+        </p-panel>
+    </div>
+    <div class="col-6">
+        <p-panel header="Chamados por Responsável">
+            <p-chart type="pie" [data]="dadosGrafico2" [style]="{'width': '40%'}"></p-chart>
+
+        </p-panel>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col">
+        <p-panel header="Chamados por Área">
+            <p-chart type="bar" [options]="options" [data]="dadosGrafico3" height="300px"></p-chart>
+        </p-panel>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<p-calendar inputId="periodo" [inputStyleClass]="invalidCss" [showIcon]="true" [formControl]="controlInicial" dateFormat="dd/mm/yy">
+</p-calendar>
+à
+<p-calendar [showIcon]="true" [inputStyleClass]="invalidCss" [formControl]="controlFinal" dateFormat="dd/mm/yy"></p-calendar>
+<br>
+<small id="username2-help" class="p-error" *ngIf="isValido">{{erroMessage}}</small>

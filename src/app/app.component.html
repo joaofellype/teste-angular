@@ -1,0 +1,38 @@
+<p-toast key="main-toast" position="top-right"></p-toast>
+<div class="main-body">
+
+    <div class="d-flex justify-content-start align-items-center banners">
+        <img src="http://homologacao.sefaz.ma.gov.br/sefaznet/images/logo_sefaz_branco_exp.png" alt="logo">
+        <div>
+            <h1><i>
+          Nome do Sistema
+        </i></h1>
+        </div>
+        <div *ngIf="userLogado" class="ms-auto p-5 d-flex align-items-center">
+            <h1 style="margin-right: 10px;"><i>Nome Usuário</i></h1>
+            <button pButton type="button" icon="pi pi-power-off" class="p-button-raised p-button-danger" (click)="logoff()"></button>
+
+        </div>
+    </div>
+
+    <div class="main-container" style="minHeight: 100vh; background-color: #f8f8f8;">
+        <div class="sidebar" *ngIf="userLogado">
+            <div style="minHeight: 100%;">
+
+                <p-card styleClass="card-menu" [style]="{'minHeight': '100%'}">
+                    <p-panelMenu [model]="items" [style]="{'minHeight':'100%'}"></p-panelMenu>
+                </p-card>
+            </div>
+        </div>
+
+        <div class="content " [ngClass]="{'content-sizing': userLogado}">
+            <div style="height: 100%;">
+
+                <p-card [style]="{'minHeight': '100%'}">
+                    <router-outlet></router-outlet>
+                </p-card>
+            </div>
+        </div>
+
+    </div>
+</div>

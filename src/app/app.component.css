@@ -1,0 +1,69 @@
+.main-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    background: #f8f9fa;
+}
+
+.sidebar,
+.content {
+    display: flex;
+    flex-direction: column;
+    /* color: #fff; */
+    /* border-radius: 4px; */
+    margin: 2px;
+    /* border: 1px solid rgb(216, 214, 214); */
+    padding: 2px;
+}
+
+.sidebar {
+    flex-grow: 1;
+    background-color: white;
+    max-width: 10%;
+}
+
+.content {
+    flex-grow: 2;
+}
+
+.content-sizing {
+    max-width: 90%;
+}
+
+.banners {
+    background-color: #0261a3;
+    /* border-radius: 4px; */
+    padding: 2px;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+img {
+    max-width: 30%;
+    max-height: 90%;
+}
+
+h1,
+h5 {
+    font-size: 2.2rem;
+    color: white;
+    text-shadow: 2px 2px 1px #6d6d6d;
+}
+
+::ng-deep .p-card {
+    /* bottom: 0; */
+}
+
+::ng-deep .card-menu .p-card-body {
+    padding: 1px;
+}
+
+::ng-deep .card-menu .p-card-content {
+    padding: 1px;
+}

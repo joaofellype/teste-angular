@@ -1,0 +1,63 @@
+<p-panel header="Cadastro de Assuntos">
+
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="palavras-associadas">Assunto:</label><br>
+                            <p-autoComplete inputId="palavras-associadas" [suggestions]="assuntosResultado" (completeMethod)="buscaAssunto($event)" [multiple]="true" formControlName="assuntos">
+                            </p-autoComplete>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" row ">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="responsavel">Palavras Associadas:</label><br>
+                            <p-autoComplete inputId="responsavel" [suggestions]="assuntosResultado" (completeMethod)="buscaAssunto($event)" [multiple]="true" [size]="100" formControlName="responsavel">
+                            </p-autoComplete>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex justify-content-end btn-group">
+                            <button pButton type="submit" label="Salvar"></button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</p-panel>
+<br>
+<p-panel header="Assuntos">
+    <div class="row">
+        <div class="col">
+            <p-table [value]="dados" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Assunto</th>
+                        <th>Palavras Associadas</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-chamado>
+                    <tr>
+                        <td>{{chamado.idChamado}}</td>
+                        <td>
+                            <ng-container *ngFor="let assunto of chamado.assunto">
+                                <p-tag [value]="assunto" [style]="{'margin-right':'2px'}"></p-tag>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-panel>

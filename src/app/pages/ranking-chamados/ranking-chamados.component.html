@@ -1,0 +1,65 @@
+<p-panel header="Ranking Chamados">
+    <div style="display:flex; flex-direction:row">
+      <div style="display:flex; flex-direction:column">
+        <label>Período</label>
+        <p-calendar  [showIcon]="true"></p-calendar>
+      </div>
+      <div style="margin-top:16px">
+        <label style="margin-right:5px;margin-left:5px" >      à </label>
+        <p-calendar  [showIcon]="true"></p-calendar>
+      </div>
+    </div>
+    <br/>
+    <div style="display:flex; flex-direction:column">
+      <label for="">Tipo de Ranking</label>
+  
+      <p-dropdown [style]="{'width':'400px'}" [options]="solicitantes" optionLabel="tipo"
+        [(ngModel)]="seletecdSolicitante" placeholder="Selecione opção"> </p-dropdown>
+  
+    </div>
+    <br/>
+    <div style="display:flex; flex-direction:column">
+      <label for="">Status</label>
+      <p-dropdown [style]="{'width':'400px'}" placeholder="Selecione opção" [options]="status" optionLabel="tipo"
+        [(ngModel)]="selectedStatus"></p-dropdown>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction: row-reverse;">
+  
+      <button pButton type="button" label="Pesquisar" ></button>
+      <br/>
+      <button  pButton class="p-button-secondary button-limpar" type="button" label="Limpar"  ></button>
+    </div>
+  </p-panel>
+  <br/>
+  <div>
+    <p-panel header="Resultado">
+      <ng-template pTemplate="icons">
+        <button pButton type="button" label="Exportar excel" [icon]="exportIcon" ></button>
+      </ng-template>
+      <p-table #dt [value]="solicitantesTable" styleClass="p-datatable-striped" dataKey="id" [style]="{'width':'100%'}"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+        [paginator]="true" [rows]="10" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Solicitante</th>
+            <th style="width:30%">Quantidade</th>
+  
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-solicitante>
+          <tr>
+            <td>{{solicitante.solicitante}}</td>
+            <td>{{solicitante.qtd}}</td>
+  
+          </tr>
+          <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
